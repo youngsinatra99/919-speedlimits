@@ -1,5 +1,3 @@
-QBCore = exports["midnight-core"]:GetCoreObject()
-
 local SpeedLimitEnabled = false
 local UIOpen = false
 
