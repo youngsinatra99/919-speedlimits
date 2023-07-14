@@ -1,4 +1,4 @@
-local SpeedLimitEnabled = false
+local SpeedLimitEnabled = true
 local UIOpen = false
 local manualOverride = false
 
@@ -9,15 +9,12 @@ RegisterCommand('speedlimit', function(source, args)
 end)
 ]]
 
-RegisterCommand('togglesl', function(_, _)
+RegisterCommand('togglesl', function()
     if SpeedLimitEnabled then
         TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", false)
-
     else
         TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", true)
     end
-    SpeedLimitEnabled = not SpeedLimitEnabled
-    manualOverride = not manualOverride
 end)
 
 TriggerEvent('chat:addSuggestion', '/togglesl', 'Toggle the speed limit UI on or off.')
@@ -51,9 +48,6 @@ Citizen.CreateThread(function()
             if SpeedLimitEnabled and UIOpen then
                 SendNUIMessage({action = "hide"})
                 UIOpen = false
-            end
-            if manualOverride then
-                manualOverride = false
             end
         end
     end
