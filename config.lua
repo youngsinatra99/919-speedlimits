@@ -1,6 +1,7 @@
 Config = {}
 
 Config.toggleCommand = "togglespeed"
+Config.updateFrequency = 2 -- in seconds
 
 Config.SpeedLimits = {
 	["Joshua Rd"] = 50,
