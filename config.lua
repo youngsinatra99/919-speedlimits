@@ -1,5 +1,7 @@
 Config = {}
 
+Config.toggleCommand = "togglespeed"
+
 Config.SpeedLimits = {
 	["Joshua Rd"] = 50,
 	["East Joshua Road"] = 50,
