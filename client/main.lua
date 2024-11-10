@@ -1,41 +1,18 @@
-local enabled = false
+local enabled = true
 local UIOpen = false
 local currentStreet = nil
 local frequency = Config.updateFrequency * 1000
 
-local function SaveSpeedLimitState()
-    SetResourceKvp("speedLimit", tostring(enabled))
-end
-
-local function LoadSpeedLimitState()
+CreateThread(function()
     local savedState = GetResourceKvpString("speedLimit")
     if savedState then
         enabled = savedState == "true"
     else
-        enabled = true
-        SaveSpeedLimitState()
+        SetResourceKvp("speedLimit", "true")
     end
-end
-
-LoadSpeedLimitState()
+end)
 
 RegisterCommand(Config.toggleCommand, function(source, args)
-    enabled = not enabled
-    SaveSpeedLimitState()
-    TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", enabled)
-end)
-
-RegisterCommand('togglesl', function()
-    if SpeedLimitEnabled then
-        TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", false)
-    else
-        TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", true)
-    end
-end)
-
-TriggerEvent('chat:addSuggestion', '/togglesl', 'Toggle the speed limit UI on or off.')
-
-RegisterNetEvent("919-speedlimit:client:ToggleSpeedLimit", function(toggle)
     if toggle then
         SendNUIMessage({action = "show"})
         UIOpen = true
@@ -45,7 +22,7 @@ RegisterNetEvent("919-speedlimit:client:ToggleSpeedLimit", function(toggle)
         currentStreet = nil
     end
     enabled = toggle
-    SaveSpeedLimitState()
+    SetResourceKvp("speedLimit", tostring(enabled))
 end)
 
 Citizen.CreateThread(function()
