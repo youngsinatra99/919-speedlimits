@@ -25,6 +25,16 @@ RegisterCommand(Config.toggleCommand, function(source, args)
     TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", enabled)
 end)
 
+RegisterCommand('togglesl', function()
+    if SpeedLimitEnabled then
+        TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", false)
+    else
+        TriggerEvent("919-speedlimit:client:ToggleSpeedLimit", true)
+    end
+end)
+
+TriggerEvent('chat:addSuggestion', '/togglesl', 'Toggle the speed limit UI on or off.')
+
 RegisterNetEvent("919-speedlimit:client:ToggleSpeedLimit", function(toggle)
     if toggle then
         SendNUIMessage({action = "show"})
