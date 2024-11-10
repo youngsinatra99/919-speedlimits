@@ -38,3 +38,7 @@ TriggerEvent('919-speedlimit:client:ToggleSpeedLimit')
             bottom:15vh;
         }
 ```
+
+3. **Q:** How do I toggle it and how to change the toggle command?
+
+**A:** In the file "config.lua", change the "togglespeed" to match your desired position.
