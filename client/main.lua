@@ -13,7 +13,7 @@ CreateThread(function()
 end)
 
 RegisterCommand(Config.toggleCommand, function(source, args)
-    toggle = not enabled
+    local toggle = not enabled
     if toggle then
         SendNUIMessage({action = "show"})
         UIOpen = true
